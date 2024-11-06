@@ -7,7 +7,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { AuthService } from './authservice.service';
-import { apiUrl } from '../environments/environment';
+import { apiUrl } from '../../environments/environment';
 import { UserStorageService } from './users-storage.service';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -123,7 +123,9 @@ export class PacientesService {
     return /^\d+$/.test(buscaInput);
   }
 
-  obterPacientesPorNomeEmailOuTelefone(buscaInput: string): Observable<Paciente[]> {
+  obterPacientesPorNomeEmailOuTelefone(
+    buscaInput: string
+  ): Observable<Paciente[]> {
     const headers = this.authService.getAuthHeaders();
     // console.log('obterPacientesPorNomeEmailOuTelefone chamado com:', buscaInput);
 

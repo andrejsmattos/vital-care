@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuLateralComponent } from "../../shared/menu-lateral/menu-lateral.component";
-import { RouterOutlet } from '@angular/router';
 import { CardInfoPacientesComponent } from './card-info-pacientes/card-info-pacientes.component';
 import { CardEstatisticasComponent } from './card-estatisticas/card-estatisticas.component';
 import { MatIcon } from '@angular/material/icon';
@@ -24,7 +23,6 @@ import { Paciente } from '../../entities/paciente.model';
   styleUrls: ['./home.component.scss'],
   imports: [
     MenuLateralComponent,
-    RouterOutlet,
     CardInfoPacientesComponent,  
     CardEstatisticasComponent,
     CommonModule,
@@ -47,11 +45,11 @@ export class HomeComponent implements OnInit {
   profile: string | undefined;
 
   constructor(
-    private dashboardService: DashboardService,
-    private userService: UserStorageService,
-    private pageTitleService: PageTitleService,
-    private pacientesService: PacientesService,
-    private router: Router // Injetando o Router
+    private readonly dashboardService: DashboardService,
+    private readonly userService: UserStorageService,
+    private readonly pageTitleService: PageTitleService,
+    private readonly pacientesService: PacientesService,
+    private readonly router: Router // Injetando o Router
   ) {
     this.pageTitleService.setPageTitle('ESTATÍSTICAS E INFORMAÇÕES');
   }
@@ -82,17 +80,17 @@ export class HomeComponent implements OnInit {
   }
 
   carregarDadosDoDashboard(): void {
-    this.dashboardService.getDashboardData().subscribe(
-      (data) => {            
+    this.dashboardService.getDashboardData().subscribe({
+      next: (data: any) => {            
         this.quantidadePacientes = data.numeroPacientes;
         this.quantidadeConsultas = data.numeroConsultas;
         this.quantidadeExames = data.numeroExames;
         this.quantidadeUsuarios = data.numeroUsuarios;
       },
-      (error) => {
+      error: (error: any) => {
         console.error('Erro ao carregar dados do dashboard', error);
       }
-    );
+    });
   }
 
   pesquisarPacientes(textoPesquisa: string) {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { apiUrl } from '../environments/environment';
+import { apiUrl } from '../../environments/environment';
 import { LoginResponse } from '../entities/auth.models';
 import { Router } from '@angular/router';
 import { UserStorageService } from './users-storage.service';
@@ -10,7 +10,6 @@ import { UserStorageService } from './users-storage.service';
   providedIn: 'root',
 })
 export class AuthService {
-
   private token: string | null = null;
   private profiles: string[] = [];
 
@@ -18,17 +17,19 @@ export class AuthService {
     private readonly http: HttpClient,
     private readonly router: Router,
     private readonly userService: UserStorageService
-  ) { }
+  ) {}
 
-  login(credentials: { email: string; password: string }): Observable<LoginResponse> {
+  login(credentials: {
+    email: string;
+    password: string;
+  }): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${apiUrl}/login`, credentials).pipe(
-      tap(response => {
+      tap((response) => {
         this.setToken(response.token); // armazena o token
         if (response.listaNomesPerfis && response.listaNomesPerfis.length > 0) {
           this.setProfile(response.listaNomesPerfis[0]); // armazena o perfil
         }
         this.userService.setLoggedUser(response); // Armazena o usuário logado
-
 
         // Logs para verificar o que está sendo armazenado
         console.log('Token armazenado:', localStorage.getItem('token'));
@@ -54,12 +55,12 @@ export class AuthService {
     if (token) {
       return new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      })
+        Authorization: `Bearer ${token}`,
+      });
     } else {
       console.error('Nenhum token encontrado!');
       return new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       });
     }
   }

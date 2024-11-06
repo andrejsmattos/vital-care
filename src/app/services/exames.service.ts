@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { apiUrl } from '../environments/environment';
+import { apiUrl } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './authservice.service';
 import { Exame } from '../entities/exame.model';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ExamesService {
   urlPath: string = `${apiUrl}/exames`;
@@ -19,7 +19,7 @@ export class ExamesService {
   addExame(exame: any): Observable<any> {
     const headers = this.authService.getAuthHeaders();
     return this.http.post(this.urlPath, exame, { headers });
-  };
+  }
 
   getExames(): Observable<Exame[]> {
     const headers = this.authService.getAuthHeaders();
@@ -44,10 +44,9 @@ export class ExamesService {
 
   obterQuantidadeExames(): Observable<number> {
     const headers = this.authService.getAuthHeaders();
-    const quantidadeExames = this.http.get<Exame[]>(this.urlPath, { headers }).pipe(
-      map((listaExames: Exame[]) => listaExames.length)
-    );
+    const quantidadeExames = this.http
+      .get<Exame[]>(this.urlPath, { headers })
+      .pipe(map((listaExames: Exame[]) => listaExames.length));
     return quantidadeExames;
   }
-
 }
