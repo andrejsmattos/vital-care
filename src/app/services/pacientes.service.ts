@@ -4,11 +4,12 @@ import { Paciente } from '../entities/paciente.model';
 import {
   HttpClient,
   HttpErrorResponse,
+  HttpResponse,
 } from '@angular/common/http';
 import { AuthService } from './authservice.service';
 import { environment } from '../../environments/environment';
 import { UserStorageService } from './users-storage.service';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -57,7 +58,7 @@ export class PacientesService {
           // console.log('Backend response headers:', response.headers);
           // console.log('Backend response body:', response.body);
         }),
-        map((response) => response.body?.pacientes || [])
+        map((response: HttpResponse<{ pacientes: Paciente[] }>) => response.body?.pacientes || [])
       );
   }
 

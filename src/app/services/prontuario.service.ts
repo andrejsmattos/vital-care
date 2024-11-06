@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './authservice.service';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { apiUrl } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 import { Exame } from '../entities/exame.model';
 import { Consulta } from '../entities/consulta.model';
 
@@ -10,7 +10,7 @@ import { Consulta } from '../entities/consulta.model';
   providedIn: 'root',
 })
 export class ProntuarioService {
-  urlPath: string = `${apiUrl}/pacientes`;
+  urlPath: string = `${environment.apiUrl}/pacientes`;
 
   constructor(
     private readonly http: HttpClient,

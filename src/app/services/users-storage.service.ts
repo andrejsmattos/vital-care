@@ -110,7 +110,6 @@ export class UserStorageService {
   }
 
   searchUserByEmail(buscaInput: string): Observable<User> {
-    const url = `${this.urlPath}/email`;
     return this.http.get<User>(`${this.urlPath}?email=${buscaInput}`);
   }
 
@@ -127,7 +126,7 @@ export class UserStorageService {
 
   getProfile(): string {
     if (!this.profile) {
-      this.profile = localStorage.getItem('profile') || '';
+      this.profile = localStorage.getItem('profile') ?? '';
     }
     return this.profile;
   }
