@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { apiUrl } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 import { LoginResponse } from '../entities/auth.models';
 import { Router } from '@angular/router';
 import { UserStorageService } from './users-storage.service';
@@ -23,7 +23,7 @@ export class AuthService {
     email: string;
     password: string;
   }): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${apiUrl}/login`, credentials).pipe(
+    return this.http.post<LoginResponse>(`${environment.apiUrl}/login`, credentials).pipe(
       tap((response) => {
         this.setToken(response.token); // armazena o token
         if (response.listaNomesPerfis && response.listaNomesPerfis.length > 0) {

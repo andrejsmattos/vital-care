@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { apiUrl } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './authservice.service';
 import { Exame } from '../entities/exame.model';
@@ -9,7 +9,7 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ExamesService {
-  urlPath: string = `${apiUrl}/exames`;
+  urlPath: string = `${environment.apiUrl}/exames`;
 
   constructor(
     private readonly http: HttpClient,

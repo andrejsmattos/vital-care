@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { apiUrl } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 import { User } from '../entities/user.model';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class UserStorageService {
 
   constructor(private readonly http: HttpClient) {}
 
-  urlPath: string = `${apiUrl}/usuarios`;
+  urlPath: string = `${environment.apiUrl}/usuarios`;
 
   setToken(token: string): void {
     this.token = token;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { apiUrl } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ import { apiUrl } from '../../environments/environment';
 export class LoginService {
   isLogged: boolean = false;
   token: string | null = null;
-  urlPath: string = `${apiUrl}/login`;
+  urlPath: string = `${environment.apiUrl}/login`;
 
   constructor(private readonly http: HttpClient) {}
 

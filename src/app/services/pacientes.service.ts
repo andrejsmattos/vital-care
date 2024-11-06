@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Paciente } from '../entities/paciente.model';
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpResponse,
 } from '@angular/common/http';
 import { AuthService } from './authservice.service';
-import { apiUrl } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 import { UserStorageService } from './users-storage.service';
 import { catchError, tap } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PacientesService {
-  urlPath: string = `${apiUrl}/pacientes`;
+  urlPath: string = `${environment.apiUrl}/pacientes`;
 
   constructor(
     private readonly http: HttpClient,
