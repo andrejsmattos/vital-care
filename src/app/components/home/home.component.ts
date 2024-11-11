@@ -22,7 +22,6 @@ import { Paciente } from '../../entities/paciente.model';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   imports: [
-    MenuLateralComponent,
     CardInfoPacientesComponent,  
     CardEstatisticasComponent,
     CommonModule,
