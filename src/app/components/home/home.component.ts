@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuLateralComponent } from "../../shared/menu-lateral/menu-lateral.component";
 import { CardInfoPacientesComponent } from './card-info-pacientes/card-info-pacientes.component';
 import { CardEstatisticasComponent } from './card-estatisticas/card-estatisticas.component';
 import { MatIcon } from '@angular/material/icon';
@@ -22,7 +21,6 @@ import { Paciente } from '../../entities/paciente.model';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   imports: [
-    MenuLateralComponent,
     CardInfoPacientesComponent,  
     CardEstatisticasComponent,
     CommonModule,
